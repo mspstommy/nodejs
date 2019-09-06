@@ -170,8 +170,22 @@ $mysql_password = "crayon25";
 $mysql_database = "calender";   
 $DAO = new DatabaseAccessObject($mysql_address, $mysql_username, $mysql_password, $mysql_database);
 $value = $DAO->execute("SELECT * FROM value WHERE ID = '1'");
+
+echo'<form action="work.php"method="post">
+	<input type="text" name="pd"><br>
+	<input type="text" name="pc"><br>
+	<input type="submit" value="提交">
+</form>';
+
+$table = "value";
+$data_array['ID'] = "";
+$data_array['Day'] = $_POST["pd"];
+$data_array['Content'] = $_POST["pc"];
+$DAO->insert($table, $data_array);
+$value_id = $DAO->getLastId;
+
 ?>
 <?=$value[0]["ID"]?><br>
-<?=$value[0]["Date"]?><br>
+<?=$value[0]["Day"]?><br>
 <?=$value[0]["Content"]?>
 
